@@ -31,7 +31,7 @@ public class MonitorCalorias {
 		
 		
 		Double median = array.stream().reduce((a,b) -> a+b).get()/array.size();
-		System.out.println("Foram " + array.size() + " dias tendo consumido " + df.format(median) + " calorias/dia.");
+		System.out.println("Foram " + array.size() + " dias consumindo " + df.format(median) + " calorias/dia.");
 	}
 
 }
