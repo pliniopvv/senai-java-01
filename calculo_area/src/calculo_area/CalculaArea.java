@@ -3,7 +3,7 @@ package calculo_area;
 import java.util.Scanner;
 
 public class CalculaArea {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
 		System.out.println("Digite os parâmetros da área à calcular:");
