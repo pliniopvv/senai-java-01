@@ -22,6 +22,13 @@ public class MonitorCalorias {
 		}
 		in.close();
 		
+		System.out.println("\n\n Analizando os dados :");
+		
+		System.out.println("\t Foi consumido mais que o recomendado (2000 cal) nos dias (a partir do primeiro) :");
+		
+		for (int i =0;i<array.size();i++)
+			if (array.get(i) > 2000.00) { System.out.println("\t\t" + (i+1)); }
+		
 		
 		Double median = array.stream().reduce((a,b) -> a+b).get()/array.size();
 		System.out.println("Foram " + array.size() + " dias tendo consumido " + df.format(median) + " calorias/dia.");
