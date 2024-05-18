@@ -3,7 +3,7 @@ package conversor_unidades;
 import java.util.Scanner;
 
 public class ConversorUnidades {
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		Scanner in = new Scanner(System.in);
 
 		while (true) {
