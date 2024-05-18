@@ -20,7 +20,7 @@ public class GenericBuilder<T extends Object> {
 	public T build(Class<T> classe) throws InstantiationException, IllegalAccessException {
 //		Scanner in = Main.in;
 
-		System.out.println("### Inserindo " + classe.getName());
+		System.out.println("### Inserindo " + classe.getSimpleName());
 		T instance = classe.newInstance();
 
 		Field[] fields = classe.getDeclaredFields();
@@ -78,7 +78,7 @@ public class GenericBuilder<T extends Object> {
 	public T alter(Class<T> classe, T model) throws IllegalArgumentException, IllegalAccessException {
 //		Scanner in = Main.in;
 
-		System.out.println("### Alterando " + classe.getName());
+		System.out.println("### Alterando " + classe.getSimpleName());
 
 		Field[] fields = classe.getDeclaredFields();
 		for (Field field : fields) {
