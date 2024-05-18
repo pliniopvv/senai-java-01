@@ -10,9 +10,9 @@ public class Main {
 		a.setAltura(20.2);
 
 		List<String> atividades = new ArrayList<String>();
-		atividades.add("HIIT");
-		atividades.add("Corrida");
-
+		a.registrarAtividade("HIIT");
+		a.registrarAtividade("Corrida");
+		
 		a.setAtividadesFisicas(atividades);
 		a.setDieta_alimentar("Sem glúten");
 		a.setIdade(24);

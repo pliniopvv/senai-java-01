@@ -10,7 +10,7 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 	private double pressao_arterial;
 	private double frequencia_cardiaca;
 	private String dieta_alimentar;
-	private List<String> atividadesFisicas;
+	private List<String> atividadesFisicas = new ArrayList();
 
 	// [M2S02] Ex. 02 - Sistema de Saúde - Lista de dados
 	// #######################################################
@@ -112,10 +112,14 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		System.out.println("Peso \t\t\t" + this.peso);
 		System.out.println("Altura \t\t\t" + this.altura);
 		System.out.println("IMC \t\t\t" + this.IMC());
-		
+
 		System.out.println("Atividades \t\t\t" + this.nome);
 		for (String atividade : this.atividadesFisicas)
 			System.out.println("\t \t\t\t" + atividade);
+	}
+
+	public void registrarAtividade(String atividade) {
+		this.atividadesFisicas.add(atividade);
 	}
 	// #
 	// #######################################################
