@@ -30,6 +30,10 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		return array;
 	}
 
+	public static void addPaciente(Paciente model) {
+		list.add(model);
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -119,7 +123,7 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		System.out.println("Altura \t\t\t" + this.altura);
 		System.out.println("IMC \t\t\t" + this.IMC());
 
-		System.out.println("Atividades \t\t\t" + this.nome);
+		System.out.println("Atividades \t\t\t");
 		for (String atividade : this.atividadesFisicas)
 			System.out.println("\t \t\t\t" + atividade);
 	}
