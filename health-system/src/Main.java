@@ -1,26 +1,26 @@
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static Scanner in;
 
 //	[M2S02] Ex. 04 - Sistema de Saúde - Telas do Console
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		in = new Scanner(System.in);
-		
+
 		GenericBuilder<Paciente> gb;
 		Paciente paciente;
+		int idx;
 
 		String cmdsList = "1 - Cadastrar um novo paciente;\r\n" + "2 - Listar todos os pacientes;\r\n"
-				+ "4 - Alterar informações do paciente;\r\n" + "5 - Mostrar informações de um paciente;\r\n"
-				+ "6 - Registrar atividade física para um paciente;\r\n" + "7 - Remover paciente.\r\n" + "0 - Sair;";
+				+ "3 - Alterar informações do paciente;\r\n" + "4 - Mostrar informações de um paciente;\r\n"
+				+ "5 - Registrar atividade física para um paciente;\r\n" + "6 - Remover paciente.\r\n" + "0 - Sair;";
 		System.out.println(cmdsList);
 
 		while (true) {
 //			in = new Scanner(System.in);
 			System.out.print("\t > ");
 			int cmd = in.nextInt();
-			
 
 			switch (cmd) {
 //			[M2S02] Ex. 05 - Sistema de Saúde - Cadastro Paciente
@@ -37,11 +37,17 @@ public class Main {
 					System.out.println(i + " - " + lista[i].getNome());
 				break;
 //			[M2S02] Ex. 07 - Sistema de Saúde  - Alterar Paciente
-			case 4:
+			case 3:
 				gb = new GenericBuilder<>();
 				System.out.print("id > ");
-				int idx = in.nextInt();
+				idx = in.nextInt();
 				paciente = gb.alter(Paciente.class, Paciente.getList()[idx]);
+				break;
+//			[M2S02] Ex. 08 - Sistema de Saúde - Exibir informações do Paciente
+			case 4:
+				System.out.print("id > ");
+				idx = in.nextInt();
+				Paciente.getList()[idx].monitorar();
 				break;
 			case 0:
 				break;
