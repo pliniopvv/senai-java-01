@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,10 +5,15 @@ import java.util.List;
 public class Paciente extends GenericList<Paciente> implements IGenericListEntity {
 	private String nome;
 	private int idade;
+	@Mutable
 	private double peso;
+	@Mutable
 	private double altura;
+	@Mutable
 	private double pressao_arterial;
+	@Mutable
 	private double frequencia_cardiaca;
+	@Mutable
 	private String dieta_alimentar;
 	private List<String> atividadesFisicas = new ArrayList();
 
