@@ -33,7 +33,11 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		Paciente[] array = list.toArray(new Paciente[list.size()]);
 		return array;
 	}
-
+	
+	public static void remove(int id) {
+		list.remove(id);
+	}
+	
 	public static void addPaciente(Paciente model) {
 		list.add(model);
 	}

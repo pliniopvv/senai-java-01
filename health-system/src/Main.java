@@ -35,6 +35,7 @@ public class Main {
 				Paciente[] lista = Paciente.getList();
 				for (int i = 0; i < lista.length; i++)
 					System.out.println(i + " - " + lista[i].getNome());
+				System.out.println("Fim da lista.");
 				break;
 //			[M2S02] Ex. 07 - Sistema de Saúde  - Alterar Paciente
 			case 3:
@@ -55,6 +56,12 @@ public class Main {
 				idx = in.nextInt();
 				String atividade = in.next();
 				Paciente.getList()[idx].registrarAtividade(atividade);
+				break;
+//			[M2S02] Ex. 10 - Sistema de Saúde - Remover paciente
+			case 6:
+				System.out.print("id > ");
+				idx = in.nextInt();
+				Paciente.remove(idx);
 				break;
 			case 0:
 				break;
