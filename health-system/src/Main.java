@@ -1,28 +1,26 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
+//	[M2S02] Ex. 04 - Sistema de Saúde - Telas do Console
 	public static void main(String[] args) {
-		Paciente a = new Paciente();
+		Scanner in = new Scanner(System.in);
 
-		a.setNome("Paciente A");
-		a.setAltura(20.2);
+		String cmdsList = "1 - Cadastrar um novo paciente;\r\n" + "2 - Listar todos os pacientes;\r\n"
+				+ "4 - Alterar informações do paciente;\r\n" + "5 - Mostrar informações de um paciente;\r\n"
+				+ "6 - Registrar atividade física para um paciente;\r\n" + "7 - Remover paciente.";
+		System.out.println(cmdsList);
 
-		List<String> atividades = new ArrayList<String>();
-		a.registrarAtividade("HIIT");
-		a.registrarAtividade("Corrida");
-		
-		a.setAtividadesFisicas(atividades);
-		a.setDieta_alimentar("Sem glúten");
-		a.setIdade(24);
-		a.setNome("Thomas Thurbano");
-		a.setPeso(84);
-		a.setPressao_arterial(12);
+		System.out.print("\n\t >");
+		int cmd = in.nextInt();
 
-		for (Paciente p : a.listar()) {
-			p.monitorar();
+		switch (cmd) {
+		default:
+			System.out.println("Comando indefinido");
+			break;
 		}
+
+		System.out.println("Aplicativo finalizado.");
 	}
 
 }

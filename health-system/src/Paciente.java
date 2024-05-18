@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,11 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 	}
 	// #
 	// #######################################################
+
+	public static Paciente[] getList() {
+		Paciente[] array = list.toArray(new Paciente[list.size()]);
+		return array;
+	}
 
 	public String getNome() {
 		return nome;
