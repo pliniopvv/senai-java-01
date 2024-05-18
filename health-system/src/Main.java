@@ -49,6 +49,13 @@ public class Main {
 				idx = in.nextInt();
 				Paciente.getList()[idx].monitorar();
 				break;
+//			[M2S02] Ex. 09 - Sistema de Saúde - Atividade física
+			case 5:
+				System.out.print("id > ");
+				idx = in.nextInt();
+				String atividade = in.next();
+				Paciente.getList()[idx].registrarAtividade(atividade);
+				break;
 			case 0:
 				break;
 			default:
