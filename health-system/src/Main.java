@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import entidades.Paciente;
+import repositorio.GenericBuilder;
+
 public class Main {
 
 	public static Scanner in;
@@ -25,7 +28,7 @@ public class Main {
 			switch (cmd) {
 //			[M2S02] Ex. 05 - Sistema de Saúde - Cadastro Paciente
 			case 1:
-				gb = new GenericBuilder<>();
+				gb = new GenericBuilder<>(in);
 				paciente = gb.build(Paciente.class);
 				System.out.println("\n\nPaciente adicionado");
 //				Paciente.addPaciente(p);
@@ -39,7 +42,7 @@ public class Main {
 				break;
 //			[M2S02] Ex. 07 - Sistema de Saúde  - Alterar Paciente
 			case 3:
-				gb = new GenericBuilder<>();
+				gb = new GenericBuilder<>(in);
 				System.out.print("id > ");
 				idx = in.nextInt();
 				paciente = gb.alter(Paciente.class, Paciente.getList()[idx]);

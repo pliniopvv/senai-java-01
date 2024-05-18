@@ -1,3 +1,4 @@
+package repositorio;
 import java.lang.reflect.Array;
 import java.util.List;
 
@@ -5,7 +6,7 @@ import java.util.List;
 public class GenericList<T extends IGenericListEntity> {
 	private List<T> list;
 
-	GenericList(List<T> staticList) {
+	public GenericList(List<T> staticList) {
 		list = staticList;
 	}
 

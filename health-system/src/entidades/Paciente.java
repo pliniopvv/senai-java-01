@@ -1,5 +1,10 @@
+package entidades;
 import java.util.ArrayList;
 import java.util.List;
+
+import repositorio.GenericList;
+import repositorio.IGenericListEntity;
+import repositorio.Mutable;
 
 //[M2S02] Ex. 01 - Sistema de Saúde - Paciente
 public class Paciente extends GenericList<Paciente> implements IGenericListEntity {
@@ -22,7 +27,7 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 	// #
 	private static List<Paciente> list = new ArrayList<Paciente>();
 
-	Paciente() {
+	public Paciente() {
 		super(list);
 		list.add(this);
 	}

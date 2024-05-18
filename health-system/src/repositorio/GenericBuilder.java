@@ -1,3 +1,5 @@
+package repositorio;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
@@ -9,8 +11,14 @@ import java.util.Scanner;
 //[M2S02] Ex. 05 - Sistema de Saúde - Cadastro Paciente
 public class GenericBuilder<T extends Object> {
 
+	private Scanner in;
+
+	public GenericBuilder(Scanner in) {
+		this.in = in;
+	}
+
 	public T build(Class<T> classe) throws InstantiationException, IllegalAccessException {
-		Scanner in = Main.in;
+//		Scanner in = Main.in;
 
 		System.out.println("### Inserindo " + classe.getName());
 		T instance = classe.newInstance();
@@ -68,8 +76,8 @@ public class GenericBuilder<T extends Object> {
 
 //	[M2S02] Ex. 07 - Sistema de Saúde - Alterar Paciente
 	public T alter(Class<T> classe, T model) throws IllegalArgumentException, IllegalAccessException {
-		Scanner in = Main.in;
-		
+//		Scanner in = Main.in;
+
 		System.out.println("### Alterando " + classe.getName());
 
 		Field[] fields = classe.getDeclaredFields();
