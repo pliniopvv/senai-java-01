@@ -94,4 +94,29 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		return 0;
 	}
 
+	// [M2S02] Ex. 03 - Sistema de Saúde - Métodos de Paciente
+	// #######################################################
+	// #
+	public double IMC() {
+		double imc = this.peso / Math.pow(this.altura, 2);
+		return imc;
+	}
+
+	public void monitorar() {
+		System.out.println("Paciente \t\t\t" + this.nome);
+		System.out.println("Idade \t\t\t" + this.idade);
+		System.out.println("Pressao Arterial \t\t\t" + this.pressao_arterial);
+		System.out.println("Frequencia Cardiaca \t\t\t" + this.frequencia_cardiaca);
+		System.out.println("Dieta Alimentar \t\t\t" + this.dieta_alimentar);
+
+		System.out.println("Peso \t\t\t" + this.peso);
+		System.out.println("Altura \t\t\t" + this.altura);
+		System.out.println("IMC \t\t\t" + this.IMC());
+		
+		System.out.println("Atividades \t\t\t" + this.nome);
+		for (String atividade : this.atividadesFisicas)
+			System.out.println("\t \t\t\t" + atividade);
+	}
+	// #
+	// #######################################################
 }
