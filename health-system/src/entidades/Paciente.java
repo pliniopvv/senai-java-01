@@ -1,4 +1,5 @@
 package entidades;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,23 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		super(list);
 		list.add(this);
 	}
+
+	
+//	[M2S03] Ex. 01 - Sistema de Saúde Parte 2 - Pré Requisitos
+	public Paciente(String nome, int idade, double peso, double altura, double pressao_arterial,
+			double frequencia_cardiaca, String dieta_alimentar, List<String> atividadesFisicas) {
+		super(list);
+		list.add(this);
+		this.nome = nome;
+		this.idade = idade;
+		this.peso = peso;
+		this.altura = altura;
+		this.pressao_arterial = pressao_arterial;
+		this.frequencia_cardiaca = frequencia_cardiaca;
+		this.dieta_alimentar = dieta_alimentar;
+		this.atividadesFisicas = atividadesFisicas;
+	}
+
 	// #
 	// #######################################################
 
@@ -38,11 +56,11 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		Paciente[] array = list.toArray(new Paciente[list.size()]);
 		return array;
 	}
-	
+
 	public static void remove(int id) {
 		list.remove(id);
 	}
-	
+
 	public static void addPaciente(Paciente model) {
 		list.add(model);
 	}
