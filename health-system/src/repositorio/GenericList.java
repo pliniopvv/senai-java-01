@@ -1,4 +1,5 @@
 package repositorio;
+
 import java.lang.reflect.Array;
 import java.util.List;
 
@@ -20,8 +21,14 @@ public class GenericList<T extends IGenericListEntity> {
 		return array;
 	}
 
+//	[M2S03] Ex. 08 - Sistema de Saúde Parte 2 - Lista de Funcionários e Nutricionistas
+	public void adicionar(T model) {
+		list.add(model);
+	}
+
 	public T buscarPorIr(int id) {
-		return list.stream().filter((e) -> e.getId() == id).findFirst().orElse(null);
+//		return list.stream().filter((e) -> e.getId() == id).findFirst().orElse(null);
+		return list.get(id);
 	}
 
 	public boolean remover(T model) {
