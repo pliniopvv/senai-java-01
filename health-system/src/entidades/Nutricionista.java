@@ -59,4 +59,13 @@ public class Nutricionista extends Funcionario {
 		this.tempo_de_experiencia = tempo_de_experiencia;
 	}
 
+//	[M2S03] Ex. 05 - Sistema de Saúde Parte 2 - Métodos do Nutricionista
+	public void aumentarExperiencia() {
+		this.tempo_de_experiencia++;
+	}
+
+	public void addCertificado(String certificado) {
+		this.certificacoes.add(certificado);
+	}
+
 }
