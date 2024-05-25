@@ -1,7 +1,13 @@
 package entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import repositorio.GenericList;
+import repositorio.IGenericListEntity;
+
 //[M2S03] Ex. 02 - Sistema de Saúde Parte 2 - Endereço
-public class Endereco {
+public class Endereco extends GenericList<Endereco> implements IGenericListEntity {
 	
 	private String logradouro;
 	private String Estado;
@@ -9,12 +15,16 @@ public class Endereco {
 	private int Numero;
 	private int cep;
 	
+	private static List<Endereco> list = new ArrayList<>();
+	
 	public Endereco() {
-		
+		super(list);
+		list.add(this);
 	}
 	
 	public Endereco(String logradouro, String estado, String cidade, int numero, int cep) {
-		super();
+		super(list);
+		list.add(this);
 		this.logradouro = logradouro;
 		Estado = estado;
 		Cidade = cidade;
@@ -60,6 +70,12 @@ public class Endereco {
 
 	public void setCep(int cep) {
 		this.cep = cep;
+	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
