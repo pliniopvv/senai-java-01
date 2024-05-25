@@ -61,5 +61,11 @@ public class Funcionario extends GenericList<Funcionario> implements IGenericLis
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
