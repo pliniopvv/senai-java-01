@@ -29,6 +29,11 @@ public class Funcionario extends GenericList<Funcionario> implements IGenericLis
 		this.endereco = endereco;
 		this.salario = salario;
 	}
+	
+	public static Funcionario[] getList() {
+		Funcionario[] array = list.toArray(new Funcionario[list.size()]);
+		return array;
+	}
 
 	public String getNome() {
 		return nome;

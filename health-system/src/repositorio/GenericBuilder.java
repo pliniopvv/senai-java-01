@@ -23,20 +23,45 @@ public class GenericBuilder<T extends Object> {
 		System.out.println("### Inserindo " + classe.getSimpleName());
 		T instance = classe.newInstance();
 
-		Field[] fields = classe.getDeclaredFields();
+//		Field[] _fields = classe.getDeclaredFields();
+		List<Field> fields = new ArrayList<>();
+		for (Field f : classe.getDeclaredFields())
+			fields.add(f);
+
+		Type superClass = classe.getSuperclass();
+		while (superClass != null && superClass != GenericList.class) {
+			for (Field f : ((Class<?>) superClass).getDeclaredFields())
+				fields.add(f);
+			superClass = ((Class<?>) superClass).getSuperclass();
+
+			if (superClass == Object.class)
+				superClass = null;
+		}
+
 		for (Field field : fields) {
 			if (Modifier.isStatic(field.getModifiers()))
 				continue;
 
 			Type tipo = field.getType();
 
+			if (tipo != String.class && tipo != int.class && tipo != double.class && tipo != List.class)
+				continue;
+
 			field.setAccessible(true);
+
+//			if (Arrays.asList(tipo.getClass().getInterfaces()).contains(IGenericListEntity.class)) {
+//				GenericBuilder<IGenericListEntity> g = new GenericBuilder<IGenericListEntity>(in);
+//				IGenericListEntity entity = g.build(IGenericListEntity.class);
+//				field.set(instance, entity);
+//				continue;
+//			}
+
 			System.out.print(field.getName().replaceAll("_", " "));
 //			System.out.print("#");
 //			System.out.print(field.getType());
 
 			if (tipo == List.class) {
-				System.out.print("(Separe a lista por vírgulas)");
+				System.out.print(" (Separe a lista por vírgulas)");
 			}
 
 			System.out.print("\t\t> ");

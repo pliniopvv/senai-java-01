@@ -32,7 +32,6 @@ public class Paciente extends GenericList<Paciente> implements IGenericListEntit
 		super(list);
 		list.add(this);
 	}
-
 	
 //	[M2S03] Ex. 01 - Sistema de Saúde Parte 2 - Pré Requisitos
 	public Paciente(String nome, int idade, double peso, double altura, double pressao_arterial,

@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //[M2S03] Ex. 04 - Sistema de Saúde Parte 2 - Nutricionista
@@ -8,13 +9,17 @@ public class Nutricionista extends Funcionario {
 	private List<String> certificacoes;
 	private int numero_de_consultas;
 	private int tempo_de_experiencia;
+	
+	private static List<Nutricionista> list = new ArrayList<>();
 
 	public Nutricionista() {
 		super();
+		list.add(this);
 	}
 
 	public Nutricionista(List<String> certificacoes, int numero_de_consultas, int tempo_de_experiencia) {
 		super();
+		list.add(this);
 		this.certificacoes = certificacoes;
 		this.numero_de_consultas = numero_de_consultas;
 		this.tempo_de_experiencia = tempo_de_experiencia;
@@ -33,6 +38,11 @@ public class Nutricionista extends Funcionario {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static Nutricionista[] getList() {
+		Nutricionista[] array = list.toArray(new Nutricionista[list.size()]);
+		return array;
 	}
 
 	public List<String> getCertificacoes() {

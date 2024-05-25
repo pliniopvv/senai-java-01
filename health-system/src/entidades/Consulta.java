@@ -12,7 +12,7 @@ public class Consulta extends GenericList<Consulta> implements IGenericListEntit
 
 	private String nome_nutricionista;
 	private String nome_paciente;
-	private Date Data;
+	private String Data;
 	private boolean realizada;
 
 	private static List<Consulta> list = new ArrayList<>();
@@ -22,13 +22,18 @@ public class Consulta extends GenericList<Consulta> implements IGenericListEntit
 		list.add(this);
 	}
 
-	public Consulta(String nome_nutricionista, String nome_paciente, Date data, boolean realizada) {
+	public Consulta(String nome_nutricionista, String nome_paciente, String data, boolean realizada) {
 		super(list);
 		list.add(this);
 		this.nome_nutricionista = nome_nutricionista;
 		this.nome_paciente = nome_paciente;
 		Data = data;
 		this.realizada = realizada;
+	}
+
+	public static Consulta[] getList() {
+		Consulta[] array = list.toArray(new Consulta[list.size()]);
+		return array;
 	}
 
 	public String getNome_nutricionista() {
@@ -47,11 +52,11 @@ public class Consulta extends GenericList<Consulta> implements IGenericListEntit
 		this.nome_paciente = nome_paciente;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return Data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		Data = data;
 	}
 
