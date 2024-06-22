@@ -3,6 +3,7 @@ package br.pvv.senai.petshop.service;
 import org.springframework.stereotype.Service;
 
 import br.pvv.senai.petshop.model.Pet;
+import br.pvv.senai.petshop.model.Tutor;
 import br.pvv.senai.petshop.repository.PetRepository;
 
 @Service
@@ -34,6 +35,11 @@ public class PetService {
 
 	public Pet update(int id, Pet pet) {
 		repository.list.set(id, pet);
+		return pet;
+	}
+	
+	public Pet assignTutor(Pet pet, Tutor tutor) {
+		pet.setTutor(tutor);
 		return pet;
 	}
 
