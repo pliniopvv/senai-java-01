@@ -2,8 +2,11 @@ package br.pvv.senai.saude.services;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import br.pvv.senai.saude.model.Nutricionista;
 
+@Service
 public class NutricionistaService extends GenericService<Nutricionista> {
 
 	public Nutricionista upXP(long id) {
