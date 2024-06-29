@@ -1,4 +1,4 @@
-package br.pvv.senai.petshop;
+package br.pvv.senai.saude;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
