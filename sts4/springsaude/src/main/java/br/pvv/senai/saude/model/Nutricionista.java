@@ -11,10 +11,30 @@ public class Nutricionista implements IEntity, ICollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(unique = true)
+	private String nome;
 	@Column
 	private String CRN;
 	@Column
 	private String especialidade;
+	@Column
+	int xp;
+	
+	public int getXp() {
+		return xp;
+	}
+
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public String getCRN() {
 		return CRN;

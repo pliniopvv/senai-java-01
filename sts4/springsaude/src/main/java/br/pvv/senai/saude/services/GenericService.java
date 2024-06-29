@@ -8,7 +8,7 @@ import br.pvv.senai.saude.model.IEntity;
 
 public class GenericService<T extends IEntity> {
 
-	private JpaRepository<T, Long> repository;
+	protected JpaRepository<T, Long> repository;
 
 	public T criar(T model) {
 		return repository.save(model);
