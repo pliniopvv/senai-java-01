@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Consulta implements IEntity, ICollection {
@@ -14,9 +16,11 @@ public class Consulta implements IEntity, ICollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column
+	@ManyToOne
+	@JoinColumn(name = "id_nutricionista")
 	private Nutricionista nutricionista;
-	@Column
+	@ManyToOne
+	@JoinColumn(name = "id_paciente")
 	private Paciente paciente;
 	@Column
 	private Date data;
