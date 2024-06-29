@@ -1,12 +1,26 @@
 package br.pvv.senai.saude.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Endereco implements IEntity, ICollection {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
 	private String logradouro;
+	@Column
 	private String estado;
+	@Column
 	private String cidade;
+	@Column
 	private String numero;
+	@Column
 	private String CEP;
 
 	public String getLogradouro() {

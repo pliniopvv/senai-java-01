@@ -2,14 +2,29 @@ package br.pvv.senai.saude.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Paciente implements IEntity, ICollection {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
 	private String nome;
+	@Column
 	private Date nascimento;
+	@Column
 	private String CPF;
+	@Column
 	private String telefone;
+	@Column
 	private String email;
+	@Column
 	private Endereco endereco;
 	
 	public String getNome() {

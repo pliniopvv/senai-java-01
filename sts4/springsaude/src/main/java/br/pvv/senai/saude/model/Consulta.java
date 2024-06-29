@@ -2,12 +2,25 @@ package br.pvv.senai.saude.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Consulta implements IEntity, ICollection {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
 	private Nutricionista nutricionista;
+	@Column
 	private Paciente paciente;
+	@Column
 	private Date data;
+	@Column
 	private String observacao;
 
 	public Nutricionista getNutricionista() {
