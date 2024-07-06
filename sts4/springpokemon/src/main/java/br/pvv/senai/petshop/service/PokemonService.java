@@ -64,4 +64,16 @@ public class PokemonService {
 		}
 		return null;
 	}
+
+	public Pokemon findByNumero(int numero) {
+		return repository.findByNumero(numero);
+	}
+
+	public Pokemon get(int id) {
+		Optional<Pokemon> op = repository.findById(id);
+		if (op.isEmpty())
+			return null;
+		else
+			return op.get();
+	}
 }
