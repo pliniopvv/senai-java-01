@@ -47,4 +47,8 @@ public class PokemonService {
 
 		return repository.save(p);
 	}
+
+	public Pokemon update(Pokemon model) {
+		return repository.save(model);
+	}
 }
