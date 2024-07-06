@@ -1,5 +1,7 @@
 package br.pvv.senai.petshop.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +52,16 @@ public class PokemonService {
 
 	public Pokemon update(Pokemon model) {
 		return repository.save(model);
+	}
+
+	public Pokemon delete(int id) {
+		Optional<Pokemon> opokemon = repository.findById(id);
+		if (opokemon.isPresent()) {
+			Pokemon pokemon = opokemon.get();
+			repository.delete(pokemon);
+			pokemon.setId(0);
+			return pokemon;
+		}
+		return null;
 	}
 }

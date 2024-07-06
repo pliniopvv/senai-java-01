@@ -1,6 +1,7 @@
 package br.pvv.senai.petshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,9 +31,14 @@ public class PokemonController {
 		return service.captured(model);
 	}
 	
-	@PutMapping("/update/{id}")
+	@PutMapping("/{id}")
 	public Pokemon update(@PathVariable int id, @RequestBody Pokemon model) {
 		model.setId(id);
 		return service.update(model);
+	}
+	
+	@DeleteMapping("/{id}")
+	public Pokemon delete(@PathVariable int id) {
+		return service.delete(id);
 	}
 }
