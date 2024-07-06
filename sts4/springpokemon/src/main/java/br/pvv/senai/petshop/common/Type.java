@@ -1,22 +1,6 @@
 package br.pvv.senai.petshop.common;
 
 public enum Type {
-    FOGO,
-    ÁGUA,
-    GRAMA,
-    ELÉTRICO,
-    TERRA,
-    VOADOR,
-    GELO,
-    LUTADOR,
-    VENENOSO,
-    INSETO,
-    PEDRA,
-    FADA,
-    AÇO,
-    PSIQUICO,
-    FANTASMA,
-    DRAGÃO,
-    NOTURNO,
-    METAL
+	NORMAL, FOGO, LUTA, AGUA, VOO, GRAMA, VENENO, ELETRICO, TERRA, PSIQUICO, PEDRA, GELO, INSETO, DRAGAO, FANTASMA,
+	ESCURIDAO, ACO, FANTASIA, ESTELAR
 }
