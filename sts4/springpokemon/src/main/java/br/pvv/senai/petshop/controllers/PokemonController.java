@@ -1,5 +1,7 @@
 package br.pvv.senai.petshop.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.pvv.senai.petshop.dto.CapturedPokemonDTO;
 import br.pvv.senai.petshop.dto.SeenPokemonDTO;
 import br.pvv.senai.petshop.model.Pokemon;
+import br.pvv.senai.petshop.repository.PokemonSummary;
 import br.pvv.senai.petshop.service.PokemonService;
 
 @RestController
@@ -46,5 +49,10 @@ public class PokemonController {
 	@GetMapping("/byNumber/{id}")
 	public Pokemon get(@PathVariable int id) {
 		return service.findByNumero(id);
+	}
+
+	@GetMapping
+	public List<PokemonSummary> list() {
+		return service.list();
 	}
 }

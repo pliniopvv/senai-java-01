@@ -3,6 +3,7 @@ package br.pvv.senai.petshop.model;
 import br.pvv.senai.petshop.common.Categoria;
 import br.pvv.senai.petshop.common.Habitat;
 import br.pvv.senai.petshop.common.Type;
+import br.pvv.senai.petshop.repository.IPokemonListable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Pokemon implements IEntity {
+public class Pokemon implements IEntity, IPokemonListable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

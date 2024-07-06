@@ -1,5 +1,6 @@
 package br.pvv.senai.petshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import br.pvv.senai.petshop.dto.CapturedPokemonDTO;
 import br.pvv.senai.petshop.dto.SeenPokemonDTO;
 import br.pvv.senai.petshop.model.Pokemon;
 import br.pvv.senai.petshop.repository.PokemonRepository;
+import br.pvv.senai.petshop.repository.PokemonSummary;
 
 @Service
 public class PokemonService {
@@ -75,5 +77,10 @@ public class PokemonService {
 			return null;
 		else
 			return op.get();
+	}
+
+	public List<PokemonSummary> list() {
+		List<Pokemon> list = repository.findAll();
+		return list.stream().map(x -> new PokemonSummary(x.getId(), x.getNome(), x.isCaptured())).toList();
 	}
 }
