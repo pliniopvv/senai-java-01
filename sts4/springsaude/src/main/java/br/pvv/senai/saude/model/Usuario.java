@@ -1,7 +1,5 @@
 package br.pvv.senai.saude.model;
 
-import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +18,9 @@ public class Usuario implements IEntity {
 	private String login; // username
 	@Column()
 	private String senha; // password
-	@Column()
-	private Set<Role> roles;
+	@ManyToOne()
+	@JoinColumn()
+	private Role roles;
 	@ManyToOne()
 	@JoinColumn()
 	private Funcionario funcionario;
