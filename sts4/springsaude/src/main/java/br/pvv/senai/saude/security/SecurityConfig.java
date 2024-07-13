@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -58,7 +59,10 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()).csrf(csrf -> csrf.disable())
+		http.authorizeHttpRequests(auth -> auth
+				.requestMatchers(HttpMethod.GET, "/cadastro").permitAll()
+				.requestMatchers(HttpMethod.GET, "/login").permitAll()
+				.anyRequest().authenticated()).csrf(csrf -> csrf.disable())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
