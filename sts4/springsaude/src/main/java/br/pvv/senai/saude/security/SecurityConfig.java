@@ -60,7 +60,24 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(auth -> auth
+
+				.requestMatchers("/admin/**", "/nutricionistas/**", "/consultas/**", "/pacientes/**",
+						"/minhas-consultas/**")
+				.hasRole("ADMIN")
+
+				// NUTRICIONISTA
+				.requestMatchers("/consultas/**").hasRole("NUTRICIONISTA")
+				.requestMatchers(HttpMethod.GET, "/nutricionistas/**", "/consultas/**").hasRole("NUTRICIONISTA")
+				.requestMatchers(HttpMethod.PUT, "/nutricionistas/**").hasRole("NUTRICIONISTA")
+
+				// PACIENTE
+				.requestMatchers("/pacientes/**").hasRole("PACIENTE")
+				.requestMatchers(HttpMethod.GET, "/nutricionistas/**", "/pacientes/**").hasRole("PACIENTE")
+				.requestMatchers(HttpMethod.PUT, "/nutricionistas/**").hasRole("PACIENTE")
+
+				// CADASTRO
 				.requestMatchers(HttpMethod.POST, "/cadastro", "/login").permitAll()
+
 				.anyRequest().authenticated()).csrf(csrf -> csrf.disable())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -80,10 +97,10 @@ public class SecurityConfig {
 		JWKSource<SecurityContext> jwkSource = new ImmutableJWKSet<>(new JWKSet(jwk));
 		return new NimbusJwtEncoder(jwkSource);
 	}
-	
+
 	@Bean
 	JwtDecoder JwtDecoder() {
-		return NimbusJwtDecoder.withPublicKey(pub).build();	
+		return NimbusJwtDecoder.withPublicKey(pub).build();
 	}
 
 	@Bean
