@@ -1,35 +1,41 @@
 package br.pvv.senai.saude.controllers;
 
+import java.time.Instant;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.pvv.senai.saude.dto.request.LoginRequest;
-import br.pvv.senai.saude.services.TokenService;
+import br.pvv.senai.saude.model.Usuario;
+import br.pvv.senai.saude.services.UsuarioService;
 
 @RestController
 public class TokenController {
 
 	@Autowired
-	private AuthenticationManager authManager;
+	private JwtEncoder jwtEncoder;
 	@Autowired
-	private TokenService service;
+	private UsuarioService usuarioService;
+	private static long TEMPO_EXPIRACAO = 36000L;
 
 	@PostMapping("/login")
-	public String token(@RequestBody LoginRequest login) {
-		Authentication auth = authManager
-				.authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
-
-		SecurityContextHolder.getContext().setAuthentication(auth);
-
-		// UsuariosDetails details = (UsuariosDetails) auth.getPrincipal();
-
-		String token = service.geraToken(auth);
-		return token;
+	public ResponseEntity<String> geraToken(@RequestBody LoginRequest loginRequest) {
+		Usuario usuarioEntity = usuarioService.login(loginRequest);
+		Instant agora = Instant.now();
+		String scope = usuarioEntity.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+				.collect(Collectors.joining(" "));
+		JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(agora)
+				.expiresAt(agora.plusSeconds(TEMPO_EXPIRACAO)).subject(usuarioEntity.getUsername())
+				.claim("scope", scope).build();
+		var valorJwt = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+		return ResponseEntity.ok(valorJwt);
 	}
 }

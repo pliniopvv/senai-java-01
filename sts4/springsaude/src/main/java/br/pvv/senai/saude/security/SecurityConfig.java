@@ -93,7 +93,7 @@ public class SecurityConfig {
 
 	@Bean
 	JwtEncoder jwtEncoder() {
-		JWK jwk = new RSAKey.Builder(this.pub).privateKey(this.priv).build();
+		JWK jwk = new RSAKey.Builder(pub).privateKey(this.priv).build();
 		JWKSource<SecurityContext> jwkSource = new ImmutableJWKSet<>(new JWKSet(jwk));
 		return new NimbusJwtEncoder(jwkSource);
 	}
@@ -104,7 +104,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public BCryptPasswordEncoder BCryptPasswordEncoder() {
+	BCryptPasswordEncoder BCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
