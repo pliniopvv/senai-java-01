@@ -1,7 +1,10 @@
 package br.pvv.senai.controller;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,16 @@ import br.pvv.senai.service.GenericService;
 public abstract class GenericController<T extends IEntity> {
 
 	public abstract GenericService<T> getService();
+
+	@GetMapping
+	public List<T> get() {
+		return getService().all();
+	}
+
+	@GetMapping("/paged/{pageSize}/{pageNumber}")
+	public Page<T> paged(@PathVariable int pageNumber, @PathVariable int pageSize) {
+		return getService().paged(PageRequest.of(pageNumber, pageSize));
+	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<T> get(@PathVariable long id) {

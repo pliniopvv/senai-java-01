@@ -14,7 +14,7 @@ public class MedicoService extends GenericService<Medico> {
 	private MedicoRepository repository;
 
 	@Override
-	public JpaRepository<Medico, Long> getRepository() {
+	public JpaRepository getRepository() {
 		return this.repository;
 	}
 }
