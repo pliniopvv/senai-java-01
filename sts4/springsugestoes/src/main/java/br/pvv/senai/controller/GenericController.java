@@ -19,7 +19,7 @@ import br.pvv.senai.services.GenericService;
 @RestController
 public abstract class GenericController<T extends IEntity> {
 
-	private final Log logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	public abstract GenericService<T> getService();
 
