@@ -3,6 +3,10 @@ package br.pvv.senai.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +27,10 @@ public class Content implements IEntity {
 	@Column()
 	private String descricao;
 	@Column()
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dataEnvio;
 	@Column()
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dataAtualizacao;
 
 	@OneToMany()

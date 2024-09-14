@@ -2,6 +2,8 @@ package br.pvv.senai.models;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,16 +14,15 @@ import jakarta.persistence.Table;
 
 @Entity()
 @Table(name = "tb_Comments")
-public class Comments implements IEntity {
+public class Comments implements ICollection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	@Column()
-	private int contentId;
-	@Column()
 	private String texto;
 	@Column()
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dateEnvio;
 	
 	@ManyToOne()
@@ -33,14 +34,6 @@ public class Comments implements IEntity {
 
 	public void setId(int id) {
 		Id = id;
-	}
-
-	public int getSugestaoId() {
-		return contentId;
-	}
-
-	public void setSugestaoId(int sugestaoId) {
-		this.contentId = sugestaoId;
 	}
 
 	public String getTexto() {
@@ -57,6 +50,16 @@ public class Comments implements IEntity {
 
 	public void setDateEnvio(LocalDate dateEnvio) {
 		this.dateEnvio = dateEnvio;
+	}
+
+	@Override
+	public int getIdParent() {
+		return content.getId();
+	}
+
+	@Override
+	public void setIdParent(int id) {
+		content.setId(id);
 	}
 
 }
