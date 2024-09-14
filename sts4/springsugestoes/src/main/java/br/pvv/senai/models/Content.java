@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,14 +24,18 @@ public class Content implements IEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	@Column()
+	@Schema(description = "Titulo da sugestão/comentário/reclamação", example = "Sugestão: Uma sugestão.", type = "String")
 	private String titulo;
 	@Column()
+	@Schema(description = "Descrição da sugestão/comentário/reclamação", example = "Um comentário sobre a sugestão/comentário/reclamação", type = "String")
 	private String descricao;
 	@Column()
 	@JsonFormat(pattern = "dd-MM-yyyy")
+	@Schema(description = "Data de Envio do comentário (campo automático)", example = "15-08-2023", type = "date")
 	private LocalDate dataEnvio;
 	@Column()
 	@JsonFormat(pattern = "dd-MM-yyyy")
+	@Schema(description = "Data de atualização da sugestão (campo automático)", example = "15-08-2022", type = "date")
 	private LocalDate dataAtualizacao;
 
 	@OneToMany()

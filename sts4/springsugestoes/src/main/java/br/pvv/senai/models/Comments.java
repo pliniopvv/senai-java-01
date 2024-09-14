@@ -2,8 +2,9 @@ package br.pvv.senai.models;
 
 import java.time.LocalDate;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,14 +21,16 @@ public class Comments implements ICollection {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	@Column()
+	@Schema(description = "Texto do comentário", example = "Um texto sobre a sugestão/comentário/reclamação", type = "String")
 	private String texto;
 	@Column()
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	@Schema(description = "Data de envio do comentário na sugestão (campo automático)", example = "15-08-2022", type = "date")
 	private LocalDate dateEnvio;
-	
+
 	@ManyToOne()
 	private Content content;
-	
+
 	public int getId() {
 		return Id;
 	}
