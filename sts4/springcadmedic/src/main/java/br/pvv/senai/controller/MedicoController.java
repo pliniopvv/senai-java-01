@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.pvv.senai.common.Especialidade;
 import br.pvv.senai.model.Medico;
 import br.pvv.senai.model.dto.MedicoItemDTO;
+import br.pvv.senai.repository.MedicoDAO;
 import br.pvv.senai.service.GenericService;
 import br.pvv.senai.service.MedicoService;
 
@@ -27,6 +28,9 @@ public class MedicoController extends GenericController<Medico> {
 
 	@Autowired
 	private MedicoService service;
+	
+	@Autowired
+	private MedicoDAO medicDao;
 
 	@Override
 	public GenericService<Medico> getService() {
@@ -61,6 +65,11 @@ public class MedicoController extends GenericController<Medico> {
 
 		return getService().paged(example, page)
 				.map(x -> new MedicoItemDTO(x.getNome(), x.getEspecialidade(), x.getDataNascimento())).toList();
+	}
+	
+	@GetMapping("test")
+	public void test() {
+		medicDao.Test();
 	}
 
 }

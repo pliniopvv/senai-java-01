@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.pvv.senai.saude.dto.request.LoginRequest;
 import br.pvv.senai.saude.model.Usuario;
+import br.pvv.senai.saude.security.UsuariosDetails;
 import br.pvv.senai.saude.services.UsuarioService;
 
 @RestController
@@ -29,11 +30,16 @@ public class TokenController {
 	@PostMapping("/login")
 	public ResponseEntity<String> geraToken(@RequestBody LoginRequest loginRequest) {
 		Usuario usuarioEntity = usuarioService.login(loginRequest);
+
+		if (usuarioEntity == null) return ResponseEntity.badRequest().build();
+		
+		UsuariosDetails uDetails = new UsuariosDetails(usuarioEntity);
+		
 		Instant agora = Instant.now();
-		String scope = usuarioEntity.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+		String scope = uDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
 				.collect(Collectors.joining(" "));
 		JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(agora)
-				.expiresAt(agora.plusSeconds(TEMPO_EXPIRACAO)).subject(usuarioEntity.getUsername())
+				.expiresAt(agora.plusSeconds(TEMPO_EXPIRACAO)).subject(usuarioEntity.getLogin())
 				.claim("scope", scope).build();
 		var valorJwt = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 		return ResponseEntity.ok(valorJwt);
