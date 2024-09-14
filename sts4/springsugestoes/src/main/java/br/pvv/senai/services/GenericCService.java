@@ -15,13 +15,13 @@ public abstract class GenericCService<C extends ICollection, T extends IEntity> 
 
 	public abstract Class<C> GetType();
 
-	private JpaRepository<C, Integer> repositoryCollection;
+	public abstract JpaRepository<C, Integer> getCRepository();
 
 	public List<C> findByParent(int id) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		var instance = GetType().getDeclaredConstructor().newInstance();
 		instance.setIdParent(id);
 		Example<C> example = Example.of(instance);
-		return repositoryCollection.findAll(example);
+		return getCRepository().findAll(example);
 	}
 
 }

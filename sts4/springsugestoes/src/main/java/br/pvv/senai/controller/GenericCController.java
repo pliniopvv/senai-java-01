@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.pvv.senai.models.ICollection;
 import br.pvv.senai.models.IEntity;
@@ -20,7 +21,7 @@ public abstract class GenericCController<C extends ICollection, T extends IEntit
 	private final Log logger = LogFactory.getLog(getClass());
 
 	@GetMapping("{id}/list")
-	public ResponseEntity<List<C>> list(int id) throws Exception {
+	public ResponseEntity<List<C>> list(@PathVariable() int id) throws Exception {
 		logger.info(id + "/list -> Rota acessada");
 		return ResponseEntity.ok(getCService().findByParent(id));
 	}
