@@ -30,4 +30,5 @@ public class ContentController extends GenericController<Content> {
 	public ResponseEntity<List<Content>> getAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
+	
 }
