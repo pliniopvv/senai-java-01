@@ -78,7 +78,6 @@ public class NutricionistaServiceTest {
 	void salvarNutricionista() {
 		NutricionistaRequestDTO entity = new NutricionistaRequestDTO("Um nome de nutricionista", "123123", 5, 12L,
 				"CRN12311", "Faxineira");
-		;
 
 		when(repository.save(any())).thenReturn(nutricionista);
 
