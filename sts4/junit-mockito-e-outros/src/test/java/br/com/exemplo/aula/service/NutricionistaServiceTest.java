@@ -98,4 +98,20 @@ public class NutricionistaServiceTest {
 		verify(repository).deleteById(anyLong());
 	}
 
+	@Test
+	@DisplayName("Teste autalizar nutricionista!")
+	void atualizarNutricionista() {
+		NutricionistaRequestDTO entity = new NutricionistaRequestDTO("Um nome de nutricionista", "123123", 5, 12L,
+				"CRN12311", "Faxineira");
+		when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(nutricionista));
+		when(repository.save(any(Nutricionista.class))).thenReturn(nutricionista);
+
+		var resultado = service.atualizarNutricionista(1L, entity);
+
+		assertNotNull(resultado);
+
+		verify(repository).findById(anyLong());
+		verify(repository).save(any(Nutricionista.class));
+	}
+
 }
