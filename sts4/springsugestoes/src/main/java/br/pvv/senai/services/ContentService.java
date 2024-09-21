@@ -13,7 +13,7 @@ import br.pvv.senai.repository.ContentRepository;
 
 @Service
 public class ContentService extends GenericService<Content> {
-
+	
 	@Autowired
 	private ContentRepository repository;
 	
