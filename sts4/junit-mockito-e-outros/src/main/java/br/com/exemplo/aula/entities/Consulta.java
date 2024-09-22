@@ -1,8 +1,14 @@
 package br.com.exemplo.aula.entities;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "consulta")
@@ -22,6 +28,19 @@ public class Consulta {
 
 	private LocalDate data;
 	private String observacoes;
+
+	public Consulta() {
+		super();
+	}
+
+	public Consulta(Long id, Nutricionista nutricionista, Paciente paciente, LocalDate data, String observacoes) {
+		super();
+		this.id = id;
+		this.nutricionista = nutricionista;
+		this.paciente = paciente;
+		this.data = data;
+		this.observacoes = observacoes;
+	}
 
 	public Long getId() {
 		return id;
